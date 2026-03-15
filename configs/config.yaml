@@ -1,0 +1,50 @@
+project:
+  name: rag-technical-assistant
+  version: "1.0.0"
+  description: "RAG-powered technical document assistant for autonomous driving research"
+
+arxiv:
+  base_url: "http://export.arxiv.org/api/query"
+  search_queries:
+    - "autonomous driving sensor fusion"
+    - "lidar camera perception autonomous vehicle"
+    - "deep learning object detection autonomous driving"
+    - "transformer autonomous driving"
+    - "anomaly detection automotive sensor"
+  max_results_per_query: 100
+  raw_path: "data/raw/papers.json"
+
+chunking:
+  chunk_size: 800
+  chunk_overlap: 100
+  processed_path: "data/processed/chunks.json"
+
+embeddings:
+  model: "sentence-transformers/all-MiniLM-L6-v2"
+  vector_store_path: "data/processed/vectorstore"
+  collection_name: "arxiv_ad_papers"
+
+retrieval:
+  top_k: 5
+  score_threshold: 0.3
+
+llm:
+  model: "llama3.2:3b"
+  ollama_url: "http://localhost:11434"
+  max_tokens: 1024
+  system_prompt: |
+    You are a technical research assistant specialising in autonomous driving and automotive AI.
+    You are given excerpts from research papers as context.
+    Use the context to answer the question as thoroughly as possible.
+    Even if the context only partially addresses the question, extract and explain what is relevant.
+    Always cite the paper title and authors when referencing specific claims.
+    Synthesise information across multiple papers where relevant.
+    Only say you cannot answer if the context is completely unrelated to the question.
+
+serving:
+  host: "0.0.0.0"
+  port: 8000
+
+mlflow:
+  tracking_uri: "http://localhost:5001"
+  experiment_name: "rag-technical-assistant"

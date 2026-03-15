@@ -1,0 +1,33 @@
+# Secrets
+.env
+
+# Raw data — too large for git
+data/raw/
+
+# Logs and reports
+outputs/logs/
+outputs/reports/
+
+mlartifacts/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# Mac
+.DS_Store
+
+README_ProjectBrief.docx
+
+# MLflow
+mlruns/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# NOTE: data/processed/ and data/processed/vectorstore/ are intentionally
+# committed so HF Spaces can load the pre-built vector store without
+# re-running the ingestion pipeline on startup.
