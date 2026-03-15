@@ -25,6 +25,8 @@ README_ProjectBrief.docx
 # MLflow
 mlruns/
 
+mlflow.db
+
 # Jupyter
 .ipynb_checkpoints/
 
